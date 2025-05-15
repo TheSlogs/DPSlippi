@@ -1,0 +1,76 @@
+
+
+<div class="filters">
+  <mat-form-field appearance="outline">
+    <mat-label>Character</mat-label>
+    <input matInput [(ngModel)]="filterValues.character" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Stage</mat-label>
+    <input matInput [(ngModel)]="filterValues.stage" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Opponent Tag</mat-label>
+    <input matInput [(ngModel)]="filterValues.opp_tag" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="applyFilter()">
+    Filter
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let stats"> {{stats.id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="startAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+      <td mat-cell *matCellDef="let stats"> {{stats.startAt}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="opp_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opponent Name </th>
+      <td mat-cell *matCellDef="let stats"> {{stats.opp_name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="opp_tag">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opponent Tag </th>
+      <td mat-cell *matCellDef="let stats"> {{stats.opp_tag}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="character">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Character </th>
+        <td mat-cell *matCellDef="let stats"> {{stats.character}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="opp_character">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Opponent Character </th>
+        <td mat-cell *matCellDef="let stats"> {{stats.opp_character}} </td>
+      </ng-container>
+  
+    <ng-container matColumnDef="stage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Stage </th>
+        <td mat-cell *matCellDef="let stats"> {{stats.stage}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="game_duration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Game Duration </th>
+        <td mat-cell *matCellDef="let stats"> {{stats.game_duration}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="result">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Result </th>
+        <td mat-cell *matCellDef="let stats"> {{stats.result}} </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+  

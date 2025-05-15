@@ -1,0 +1,25 @@
+<label for="slp-folder" class="dropzone">
+    <div class="dropzone-content">
+      <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+      </svg>
+      <p><strong>Select your <span class="accent">whole</span> Slippi replays folder</strong></p>
+    </div>
+    <div class="helper-text">
+      <p>Usually found at: <code>C:/Users/&lt;username&gt;/Documents/Slippi</code></p>
+      <p><strong>Do not</strong> select the contents—select the folder itself</p>
+    </div>
+    <input
+      name="files"
+      type="file"
+      id="slp-folder"
+      (change)="onFileSelected($event)"
+      class="hidden"
+      webkitdirectory
+      directory />
+  </label>
+
+  <app-stat-table></app-stat-table>
+  <app-win-rate></app-win-rate>
+

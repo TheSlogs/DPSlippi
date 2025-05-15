@@ -1,0 +1,29 @@
+<div class="winRateTable">
+    <mat-checkbox [(ngModel)]="selectedGroupingsMap['opp_tag']" (change)="updateWinRates()">Opponent</mat-checkbox>
+    <mat-checkbox [(ngModel)]="selectedGroupingsMap['character']" (change)="updateWinRates()">Character</mat-checkbox>
+    <mat-checkbox [(ngModel)]="selectedGroupingsMap['opp_character']" (change)="updateWinRates()">Opponent Character</mat-checkbox>
+    <mat-checkbox [(ngModel)]="selectedGroupingsMap['stage']" (change)="updateWinRates()">Stage</mat-checkbox>
+  
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8"> 0">
+      <ng-container *ngFor="let column of winRateColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | titlecase }}</th>
+        <td mat-cell *matCellDef="let row">{{ row[column] }}</td>
+      </ng-container>
+
+      <!-- Games Played Column -->
+      <ng-container matColumnDef="games_played">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Games Played</th>
+        <td mat-cell *matCellDef="let row">{{ row.gamesPlayed }}</td>
+    </ng-container>
+  
+      <ng-container matColumnDef="win_rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Win Rate</th>
+        <td mat-cell *matCellDef="let row">{{ row.winRate | percent:'1.0-1' }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="winRateColumns.concat(['games_played', 'win_rate'])"></tr>
+      <tr mat-row *matRowDef="let row; columns: winRateColumns.concat(['games_played', 'win_rate'])"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+  </div>
